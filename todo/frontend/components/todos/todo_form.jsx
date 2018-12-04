@@ -1,6 +1,6 @@
 import React from 'react';
-
-class TodoForm extends React.Component {
+import { uniqueId } from '../../util/utils.js'
+export class TodoForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,6 +10,7 @@ class TodoForm extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -20,6 +21,20 @@ class TodoForm extends React.Component {
     this.setState({
       [name]: value
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const todo = {
+      id: uniqueId(),
+      title: this.state.title,
+      body: this.state.description,
+      done: false
+    };
+
+    debugger
+    this.props.receiveTodo(todo);
   }
 
   render() {
@@ -37,7 +52,7 @@ class TodoForm extends React.Component {
           onChange={this.handleInputChange} />
         </label>
 
-        <input type="submit">Create Step!</input>
+        <input type="submit" value="Create Step!" onClick={this.handleSubmit}></input>
       </form>
     );
   }
