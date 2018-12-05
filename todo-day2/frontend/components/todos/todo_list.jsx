@@ -24,7 +24,12 @@ export class TodoList extends React.Component {
         clearErrors={this.props.clearErrors}/>
       <ul>
         {this.props.todos.map((el, idx) => (
-          <TodoListItem todo={el} key={el.id} />
+          <TodoListItem
+            todo={el}
+            key={el.id}
+            removeTodo={this.props.removeTodo}
+            receiveTodo={this.props.receiveTodo}
+          />
         ))}
       </ul>
       </>
