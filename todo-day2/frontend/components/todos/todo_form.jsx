@@ -44,26 +44,37 @@ export class TodoForm extends React.Component {
             title: "",
             description: ""
           }
-        )));
+        )))
+      .then(() => {
+        console.log(this.props);
+        this.props.clearErrors();
+      });
   }
 
   render() {
     return (
-      <form>
-        <label>Title:
-        <input type="text" name="title"
-          value={this.state.title}
-          onChange={this.handleInputChange} />
-        </label>
+      <div>
+        {
+          this.props.errors.map((error, idx) => (
+            <p key={idx}>{error}</p>
+          ))
+        }
+        <form>
+          <label>Title:
+          <input type="text" name="title"
+            value={this.state.title}
+            onChange={this.handleInputChange} />
+          </label>
 
-        <label>Description:
-        <input type="text" name="description"
-          value={this.state.description}
-          onChange={this.handleInputChange} />
-        </label>
+          <label>Description:
+          <input type="text" name="description"
+            value={this.state.description}
+            onChange={this.handleInputChange} />
+          </label>
 
-        <input type="submit" value="Create Step!" onClick={this.handleSubmit}></input>
-      </form>
+          <input type="submit" value="Create Step!" onClick={this.handleSubmit}></input>
+        </form>
+      </div>
     );
   }
 }

@@ -17,7 +17,11 @@ export class TodoList extends React.Component {
   render() {
     return (
       <>
-      <TodoForm receiveTodo={this.props.receiveTodo} createTodo={this.props.createTodo}/>
+      <TodoForm
+        errors={this.props.errors}
+        receiveTodo={this.props.receiveTodo}
+        createTodo={this.props.createTodo}
+        clearErrors={this.props.clearErrors}/>
       <ul>
         {this.props.todos.map((el, idx) => (
           <TodoListItem todo={el} key={el.id} />
