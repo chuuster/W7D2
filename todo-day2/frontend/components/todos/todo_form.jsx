@@ -1,5 +1,7 @@
 import React from 'react';
-import { uniqueId } from '../../util/utils.js'
+import { uniqueId } from '../../util/utils.js';
+import { createTodo } from "../../util/todo_api_util.js";
+
 export class TodoForm extends React.Component {
   constructor(props) {
     super(props);
@@ -27,14 +29,22 @@ export class TodoForm extends React.Component {
     event.preventDefault();
 
     const todo = {
-      id: uniqueId(),
-      title: this.state.title,
-      body: this.state.description,
-      done: false
+      todo: {
+        id: uniqueId(),
+        title: this.state.title,
+        body: this.state.description,
+        done: false
+      }
     };
 
-    debugger
-    this.props.receiveTodo(todo);
+    this.props.createTodo(todo)
+      .then(() => (
+        this.setState(
+          {
+            title: "",
+            description: ""
+          }
+        )));
   }
 
   render() {

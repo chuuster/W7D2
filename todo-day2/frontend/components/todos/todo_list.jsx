@@ -11,14 +11,13 @@ export class TodoList extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     this.props.fetchTodos();
   }
 
   render() {
     return (
       <>
-      <TodoForm receiveTodo={this.props.receiveTodo}/>
+      <TodoForm receiveTodo={this.props.receiveTodo} createTodo={this.props.createTodo}/>
       <ul>
         {this.props.todos.map((el, idx) => (
           <TodoListItem todo={el} key={el.id} />
